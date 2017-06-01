@@ -1,0 +1,168 @@
+{
+  "_note1": "KEEP THIS FILE! Check it into a version control system (VCS) like git.",
+  "_note2": "ObjectBox manages crucial IDs for your object model. See docs for details.",
+  "_note3": "If you have VCS merge conflicts, you must resolve them according to ObjectBox docs.",
+  "entities": [
+    {
+      "id": "1:602466848520698877",
+      "lastPropertyId": "7:3513430569076068485",
+      "name": "Subject",
+      "properties": [
+        {
+          "id": "1:6729877203126329816",
+          "name": "id"
+        },
+        {
+          "id": "2:3053595294334483017",
+          "name": "name"
+        },
+        {
+          "id": "3:9200505576762278980",
+          "name": "description"
+        },
+        {
+          "id": "4:6281627844594843720",
+          "name": "finished"
+        },
+        {
+          "id": "5:2910672127711252528",
+          "name": "finalScore"
+        },
+        {
+          "id": "6:5615341037598149642",
+          "name": "createdAt"
+        }
+      ]
+    },
+    {
+      "id": "2:1884349504009279719",
+      "lastPropertyId": "8:8148150378840517733",
+      "name": "Appointment",
+      "properties": [
+        {
+          "id": "1:2836894322607194035",
+          "name": "id"
+        },
+        {
+          "id": "2:1679954934873863648",
+          "name": "date"
+        },
+        {
+          "id": "3:5425726487857747016",
+          "name": "title"
+        },
+        {
+          "id": "4:4107350407240911955",
+          "name": "description"
+        },
+        {
+          "id": "6:4335598108513002419",
+          "indexId": "2:1815770232613784614",
+          "name": "relatedSubjectId"
+        },
+        {
+          "id": "8:8148150378840517733",
+          "name": "notificationType"
+        }
+      ]
+    },
+    {
+      "id": "3:2572952051687610093",
+      "lastPropertyId": "2:3064808935762155544",
+      "name": "Notification",
+      "properties": [
+        {
+          "id": "1:1847830518218072610",
+          "name": "id"
+        },
+        {
+          "id": "2:3064808935762155544",
+          "name": "trigger"
+        }
+      ]
+    },
+    {
+      "id": "4:8544924114898454841",
+      "lastPropertyId": "7:468923814894948409",
+      "name": "ScheduleItem",
+      "properties": [
+        {
+          "id": "1:8884335687459800965",
+          "name": "id"
+        },
+        {
+          "id": "2:5213673031774438841",
+          "name": "weekday"
+        },
+        {
+          "id": "4:619426886205572708",
+          "name": "startingAt"
+        },
+        {
+          "id": "5:1246249041210753459",
+          "name": "endingAt"
+        },
+        {
+          "id": "6:3039799487745935976",
+          "name": "color"
+        },
+        {
+          "id": "7:468923814894948409",
+          "indexId": "3:4626240791980231443",
+          "name": "notificationId"
+        }
+      ]
+    },
+    {
+      "id": "5:6021109791689599932",
+      "lastPropertyId": "7:4777719371950048280",
+      "name": "Score",
+      "properties": [
+        {
+          "id": "1:2353581474089338237",
+          "name": "id"
+        },
+        {
+          "id": "2:7114767905823607290",
+          "name": "value"
+        },
+        {
+          "id": "3:4104829940345327989",
+          "name": "weight"
+        },
+        {
+          "id": "4:4170839280104941150",
+          "name": "description"
+        },
+        {
+          "id": "5:3774602838287154248",
+          "name": "createdAt"
+        },
+        {
+          "id": "6:1286835030348320701",
+          "name": "updatedAt"
+        },
+        {
+          "id": "7:4777719371950048280",
+          "indexId": "1:5919851005156453579",
+          "name": "subjectId"
+        }
+      ]
+    }
+  ],
+  "lastEntityId": "5:6021109791689599932",
+  "lastIndexId": "4:8704686184481335666",
+  "lastSequenceId": "0:0",
+  "modelVersion": 2,
+  "retiredEntityUids": [],
+  "retiredIndexUids": [
+    8704686184481335666
+  ],
+  "retiredPropertyUids": [
+    6596390712516066970,
+    5821748304765650739,
+    3513430569076068485,
+    3700294874020424897
+  ],
+  "version": 1
+}
