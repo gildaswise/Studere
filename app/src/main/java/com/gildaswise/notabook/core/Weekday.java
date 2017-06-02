@@ -12,7 +12,7 @@ import io.objectbox.converter.PropertyConverter;
  * Created by Gildaswise on 04/05/2017.
  */
 
-public enum Weekday {
+public enum Weekday implements DisplayableEnum {
 
     UNKNOWN(null, 0),
     SUNDAY(DayOfWeek.SUNDAY, R.string.sunday),

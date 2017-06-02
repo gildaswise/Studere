@@ -48,4 +48,8 @@
     <string name="appointment_dialog_close_title">Do you wish to discard this appointment?</string>
     <string name="error_empty_title">An appointment can\'t be created without a title!</string>
     <string name="error_invalid_date">Please set a valid date! It shouldn\'t be in the past!</string>
+    <string name="appointment_dialog_subject_title">Link this appointment with a subject</string>
+    <string name="error_empty_subject_list">You didn\'t create any subject yet!</string>
+    <string name="none">None</string>
+    <string name="default_text">Default</string>
 </resources>

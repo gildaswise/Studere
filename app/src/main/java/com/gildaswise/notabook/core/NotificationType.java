@@ -8,7 +8,7 @@ import io.objectbox.converter.PropertyConverter;
  * Created by Gildaswise on 27/05/2017.
  */
 
-public enum NotificationType {
+public enum NotificationType implements DisplayableEnum {
 
     UNKNOWN(0, 0, 0),
     NO_NOTIFICATION(1, R.string.appointment_notification_option_1, 0),
