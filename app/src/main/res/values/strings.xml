@@ -9,7 +9,11 @@
     <string name="friday">Friday</string>
     <string name="saturday">Saturday</string>
     <string name="score_text">%.1f</string>
-    <string name="subject_status_average">%.1f is your average!</string>
+    <string name="subject_status_average">
+        <![CDATA[
+            <b>%.1f</b> is your average!
+        ]]>
+    </string>
     <string name="subject_status_none_available">No enough scores available to get a status!</string>
     <string name="subject_status_finished_passed">Congratulations, you passed!</string>
     <string name="subject_status_finished_passed_false">Hey, you didn\'t pass but you can do better next time, believe in yourself!</string>

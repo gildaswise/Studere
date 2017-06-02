@@ -14,14 +14,11 @@ import android.view.ViewGroup;
 import com.gildaswise.notabook.App;
 import com.gildaswise.notabook.R;
 import com.gildaswise.notabook.core.Appointment;
-import com.gildaswise.notabook.core.Subject;
 import com.gildaswise.notabook.databinding.FragmentDefaultBinding;
 import com.gildaswise.notabook.ui.activity.AppointmentActivity;
 import com.gildaswise.notabook.ui.cardview.CardViewAppointment;
 import com.gildaswise.notabook.utils.ActivityUtils;
 import com.mikepenz.fastadapter.FastAdapter;
-import com.mikepenz.fastadapter.IAdapter;
-import com.mikepenz.fastadapter.IItem;
 import com.mikepenz.fastadapter.commons.adapters.FastItemAdapter;
 
 import java.util.List;

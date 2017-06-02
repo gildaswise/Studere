@@ -1,11 +1,13 @@
 package com.gildaswise.notabook.ui.activity;
 
 import android.databinding.DataBindingUtil;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.PopupMenu;
+import android.text.Html;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.Toast;
@@ -59,14 +61,20 @@ public class SubjectActivity extends AppCompatActivity {
             List<Score> scoreList = selectedSubject.getScores();
             App.log("SubjectActivity - onRefresh", "Subject (" + selectedSubject.getName() + ") has " + scoreList.size() + " scores");
             boolean isEmpty = scoreList.isEmpty();
-            binding.cardviewInfo.setVisibility((isEmpty) ? View.GONE : View.VISIBLE);
+            boolean displayCardView = !isEmpty && scoreList.size() > 1;
+            binding.cardviewInfo.setVisibility((displayCardView) ? View.VISIBLE : View.GONE);
             binding.emptyMessage.setVisibility((isEmpty) ? View.VISIBLE : View.GONE);
             if(!isEmpty) {
 
                 //Prepare CardView containing Subject's status
-                String status = SubjectUtils.getSubjectStatus(this, selectedSubject);
-                status += Constant.STRING_SPACE + String.format(getString(R.string.subject_status_average), selectedSubject.getAverage());
-                binding.textSubjectStatus.setText(status);
+                if(displayCardView) {
+                    String status = SubjectUtils.getSubjectStatus(this, selectedSubject);
+                    status += Constant.STRING_SPACE + String.format(getString(R.string.subject_status_average), selectedSubject.getAverage());
+                    binding.textSubjectStatus.setText(
+                            (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) ?
+                                    Html.fromHtml(status, Html.FROM_HTML_MODE_COMPACT) : Html.fromHtml(status)
+                    );
+                }
 
                 //Fill adapter in another thread due to using forEach
                 App.startNewThread(() -> {
