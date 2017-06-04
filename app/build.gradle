@@ -10,17 +10,6 @@ android {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
-    flavorDimensions "variant"
-    productFlavors {
-        dev {
-            dimension "variant"
-            minSdkVersion 21
-        }
-        prod {
-            dimension "variant"
-            minSdkVersion 19
-        }
-    }
     defaultConfig {
         applicationId "com.gildaswise.notabook"
         minSdkVersion 19
@@ -97,7 +86,7 @@ dependencies {
     compile 'com.mikepenz:materialize:1.0.1@aar'
     compile 'com.evernote:android-job:1.1.10'
     compile 'com.squareup.moshi:moshi:1.4.0'
-    compile 'io.objectbox:objectbox-android:0.9.9'
+    compile 'io.objectbox:objectbox-android:0.9.12'
     compile 'com.jakewharton.threetenabp:threetenabp:1.0.5'
     testCompile 'junit:junit:4.12'
 }

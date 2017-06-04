@@ -57,7 +57,6 @@ public class SubjectActivity extends AppCompatActivity {
 
     private void onRefresh() {
         if (selectedSubject != null) {
-            selectedSubject.resetScores();
             List<Score> scoreList = selectedSubject.getScores();
             App.log("SubjectActivity - onRefresh", "Subject (" + selectedSubject.getName() + ") has " + scoreList.size() + " scores");
             boolean isEmpty = scoreList.isEmpty();
