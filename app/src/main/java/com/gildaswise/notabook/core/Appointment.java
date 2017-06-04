@@ -120,4 +120,22 @@ public class Appointment {
         this.notificationType = notificationType;
     }
 
+    @Override
+    public int hashCode() {
+        return super.hashCode();
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if(obj != null && obj instanceof Appointment) {
+            Appointment other = (Appointment) obj;
+            return other.getId().equals(this.getId()) &&
+                   other.getTitle().equals(this.getTitle()) &&
+                   other.getDescription().equals(this.getDescription()) &&
+                   other.getDate().equals(this.getDate()) &&
+                   other.getNotificationType().getTypeId() == this.getNotificationType().getTypeId() &&
+                   other.getRelatedSubject().equals(this.getRelatedSubject());
+        }
+        return false;
+    }
 }

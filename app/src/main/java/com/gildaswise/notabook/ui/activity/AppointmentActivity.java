@@ -58,14 +58,27 @@ public class AppointmentActivity extends AppCompatActivity implements DatePicker
         binding.appointmentNotification.setOnClickListener(getOnSetNotificationListener());
     }
 
-    @Override
-    public void onBackPressed() {
+    private void confirmExit() {
         new AlertDialog.Builder(this)
                 .setCancelable(false)
                 .setTitle(R.string.appointment_dialog_close_title)
                 .setPositiveButton(android.R.string.yes, (dialog, which) -> super.onBackPressed())
                 .setNegativeButton(android.R.string.no, null)
                 .show();
+    }
+
+    @Override
+    public void onBackPressed() {
+        if(appointment.getId() != null) {
+            Appointment savedAppointment = appointmentBox.get(appointment.getId());
+            if(savedAppointment.equals(appointment)) {
+                super.onBackPressed();
+            } else {
+                confirmExit();
+            }
+        } else {
+            confirmExit();
+        }
     }
 
     public View.OnClickListener getOnCloseListener() {

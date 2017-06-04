@@ -48,6 +48,7 @@ public class Subject {
         setName(name);
         setDescription(description);
         this.createdAt = DateUtils.now();
+        this.finalScore = 0.0;
     }
 
     @Generated(1855403211)
@@ -138,5 +139,19 @@ public class Subject {
 
     public List<Score> getScores() {
         return scores;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if(obj != null && obj instanceof Subject) {
+            Subject other = (Subject) obj;
+            return other.getId().equals(this.getId()) &&
+                   other.getName().equals(this.getName()) &&
+                   other.getDescription().equals(this.getDescription()) &&
+                   other.getFinished() == this.getFinished() &&
+                   other.getCreatedAt().equals(this.getCreatedAt()) &&
+                   other.getFinalScore() == this.getFinalScore();
+        }
+        return false;
     }
 }
