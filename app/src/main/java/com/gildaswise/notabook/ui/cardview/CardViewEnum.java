@@ -1,11 +1,14 @@
 package com.gildaswise.notabook.ui.cardview;
 
 import android.content.Context;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.TextView;
 
+import com.gildaswise.notabook.R;
 import com.gildaswise.notabook.core.DisplayableEnum;
+import com.gildaswise.notabook.databinding.CardviewEnumBinding;
 import com.gildaswise.notabook.utils.Constant;
 import com.mikepenz.fastadapter.items.AbstractItem;
 
@@ -18,9 +21,11 @@ import java.util.List;
 public class CardViewEnum extends AbstractItem<CardViewEnum, CardViewEnum.ViewHolder> {
 
     private DisplayableEnum displayableEnum;
+    private boolean selected;
 
-    public CardViewEnum(DisplayableEnum displayableEnum) {
+    public CardViewEnum(DisplayableEnum displayableEnum, boolean selected) {
         this.displayableEnum = displayableEnum;
+        this.selected = selected;
     }
 
     public DisplayableEnum getDisplayableEnum() {
@@ -34,33 +39,32 @@ public class CardViewEnum extends AbstractItem<CardViewEnum, CardViewEnum.ViewHo
 
     @Override
     public int getType() {
-        return android.R.id.text1;
+        return R.id.content;
     }
 
     @Override
     public int getLayoutRes() {
-        return android.R.layout.simple_list_item_1;
+        return R.layout.cardview_enum;
     }
 
     @Override
     public void bindView(ViewHolder holder, List<Object> payloads) {
         super.bindView(holder, payloads);
-        holder.text.setText(displayableEnum.getStringRes());
-    }
-
-    @Override
-    public void unbindView(ViewHolder holder) {
-        super.unbindView(holder);
-        holder.text.setText(Constant.STRING_EMPTY);
+        Context localContext = holder.itemView.getContext();
+        holder.binding.setDisplayableEnum(displayableEnum);
+        if(selected) {
+            holder.binding.text.setTextColor(ContextCompat.getColor(localContext, R.color.colorPrimary));
+            holder.binding.imageCheck.setVisibility(View.VISIBLE);
+        }
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
 
-        protected TextView text;
+        protected CardviewEnumBinding binding;
 
         public ViewHolder(View itemView) {
             super(itemView);
-            text = (TextView) itemView.findViewById(android.R.id.text1);
+            binding = CardviewEnumBinding.bind(itemView);
         }
     }
 

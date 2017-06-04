@@ -155,19 +155,24 @@ public class AppointmentActivity extends AppCompatActivity implements DatePicker
     public View.OnClickListener getOnSetNotificationListener() {
         return v -> {
             List<NotificationType> notificationTypeList = Arrays.asList(NotificationType.values());
+            NotificationType selectedNotificationType = appointment.getNotificationType();
             FastAdapterDialog<CardViewEnum> dialog = new FastAdapterDialog<CardViewEnum>(this)
                     .withFastItemAdapter(new FastItemAdapter<>());
             dialog.withOnClickListener((view, adapter, item, position) -> {
                 appointment.setNotificationType(NotificationType.valueOf(item.getDisplayableEnum().name()));
                 dialog.dismiss();
                 return true;
-            }).withNeutralButton(R.string.default_text, (dlg, which) -> {
-                appointment.setNotificationType(NotificationType.THIRTY_MINUTES_BEFORE);
             })
             .setOnDismissListener(dlg -> {
                 binding.setAppointment(appointment);
             });
-            for (NotificationType notificationType : notificationTypeList) {if(notificationType.getTypeId() > 0) dialog.add(new CardViewEnum(notificationType));}
+//            .withPositiveButton(R.string.default_text, (dlg, which) -> {
+//                appointment.setNotificationType(NotificationType.THIRTY_MINUTES_BEFORE);
+//            })
+            for (NotificationType notificationType : notificationTypeList) {
+                int typeId = notificationType.getTypeId();
+                if(typeId > 0) dialog.add(new CardViewEnum(notificationType, (selectedNotificationType.getTypeId() == typeId)));
+            }
             dialog.show();
         };
     }
