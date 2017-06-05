@@ -134,7 +134,7 @@ public class Appointment {
                    other.getDescription().equals(this.getDescription()) &&
                    other.getDate().equals(this.getDate()) &&
                    other.getNotificationType().getTypeId() == this.getNotificationType().getTypeId() &&
-                   other.getRelatedSubject().equals(this.getRelatedSubject());
+                   other.getRelatedSubject() == this.getRelatedSubject();
         }
         return false;
     }

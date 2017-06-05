@@ -52,4 +52,11 @@
     <string name="error_empty_subject_list">You didn\'t create any subject yet!</string>
     <string name="none">None</string>
     <string name="default_text">Default</string>
+    <string name="subject_snackbar_average">
+        <![CDATA[
+        The average of the selected items is <b>%.2f</b>
+        ]]>
+    </string>
+    <string name="subject_selected_item">%d score(s) selected</string>
+    <string name="hide">Hide</string>
 </resources>

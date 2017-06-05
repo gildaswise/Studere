@@ -51,6 +51,12 @@ public class CardViewScore extends AbstractItem<CardViewScore, CardViewScore.Vie
         Double defaultAverage = Double.valueOf(PreferenceManager.getDefaultSharedPreferences(localContext).getString("defaultAverage", "7.0"));
         holder.binding.setScore(score);
         holder.binding.textScoreValue.setTextColor(ContextCompat.getColor(localContext, (score.getValue() > defaultAverage) ? R.color.md_blue_500 : R.color.md_red_500));
+        holder.binding.content.setCardBackgroundColor(ContextCompat.getColor(localContext, isSelected() ? R.color.md_teal_200 : R.color.md_white_1000));
+    }
+
+    @Override
+    public CardViewScore withSetSelected(boolean selected) {
+        return super.withSetSelected(selected);
     }
 
     @Override

@@ -17,6 +17,7 @@
         android:id="@+id/content"
         android:layout_marginBottom="4dp"
         android:foreground="?android:attr/selectableItemBackground"
+
         app:cardElevation="2dp"
         app:cardBackgroundColor="@color/md_white_1000"
         app:cardCornerRadius="2dp"

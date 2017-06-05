@@ -11,6 +11,8 @@ public abstract class Constant {
     public static final String STRING_EMPTY = "";
     public static final String STRING_SPACE = " ";
     public static final String STRING_SUSPENSION_POINTS = "…";
+    public static final String NEW_LINE = "\n";
+    public static final String NEW_LINE_HTML = "<br>";
 
     public static String shorten(String str) {
         return (str.length() > Subject.MAX_NAME_LENGTH) ? str.substring(0, Subject.MAX_NAME_LENGTH - 2) + Constant.STRING_SUSPENSION_POINTS : str;

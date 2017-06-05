@@ -16,7 +16,7 @@ public class SubjectUtils {
         Double defaultAverage = Double.valueOf(PreferenceManager.getDefaultSharedPreferences(context).getString("default_average", "7.0"));
         Double subjectAverage = subject.getAverage();
         String message;
-        if (subjectAverage == 0.0) {message = context.getString(R.string.subject_status_none_available);}
+        if (subjectAverage == Subject.DEFAULT_AVERAGE) {message = context.getString(R.string.subject_status_none_available);}
         else {
             message = context.getString(
                       (subject.getFinished()) ?

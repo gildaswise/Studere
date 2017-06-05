@@ -29,6 +29,7 @@ import io.objectbox.relation.ToMany;
 public class Subject {
 
     public static final int MAX_NAME_LENGTH = 16;
+    public static final double DEFAULT_AVERAGE = -1.0;
 
     @Id private Long id;
     private String name;
@@ -68,19 +69,26 @@ public class Subject {
     public Subject() {
     }
 
-    public Double getAverage() {
-        Double average = 0.0;
+    public static Double getAverage(List<Score> scores) {
+        Double average = DEFAULT_AVERAGE;
         Double totalWeight = 0.0;
-        List<Score> scores = getScores();
         if(scores != null && scores.size() > 1) {
+            average = 0.0;
             for (Score score : scores) {
+                App.log("Subject", "Added " + score.getValue() + " to total");
                 average += score.getValue() * score.getWeight();
-                totalWeight += score.getWeight();
+                App.log("Subject", "Total: " + average);
+                totalWeight += Math.round(1.0 * score.getWeight());
+                App.log("Subject", "Weight: " + totalWeight);
             }
-            App.log("Subject", "Calculating average for " + name + " = " + average + "/" + totalWeight);
+            App.log("Subject", "Calculating average = " + average + "/" + totalWeight);
             average = average / totalWeight;
         }
         return average;
+    }
+
+    public Double getAverage() {
+        return getAverage(getScores());
     }
 
     public Long getId() {

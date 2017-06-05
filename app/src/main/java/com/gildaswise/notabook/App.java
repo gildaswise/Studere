@@ -2,7 +2,10 @@ package com.gildaswise.notabook;
 
 import android.app.Activity;
 import android.app.Application;
+import android.os.Build;
 import android.support.design.widget.Snackbar;
+import android.text.Html;
+import android.text.Spanned;
 import android.util.Log;
 import android.view.View;
 
@@ -53,6 +56,10 @@ public class App extends Application {
         } catch (ErrorMessageException exception) {
             Snackbar.make(view, exception.getMessageStringRes(), Snackbar.LENGTH_SHORT).show();
         }
+    }
+
+    public static Spanned getHtmlFormattedString(String string) {
+        return (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) ? Html.fromHtml(string, Html.FROM_HTML_MODE_COMPACT) : Html.fromHtml(string);
     }
 
 }
