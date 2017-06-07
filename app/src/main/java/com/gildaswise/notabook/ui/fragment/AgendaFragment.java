@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.PopupMenu;
@@ -66,6 +67,7 @@ public class AgendaFragment extends Fragment implements MainActivityFragment {
     public void onRefresh() {
         App.startNewThread(() -> {
             List<Appointment> agenda = appointmentBox.getAll();
+            updateEmptyListMessage(agenda.isEmpty());
             App.startNewThread(() -> {
                 for (Appointment item : agenda) {
                     CardViewAppointment newCardView = new CardViewAppointment(item);
@@ -88,6 +90,16 @@ public class AgendaFragment extends Fragment implements MainActivityFragment {
     @Override
     public void onFloatingActionButtonClick() {
         startActivity(new Intent(getActivity(), AppointmentActivity.class));
+    }
+
+    private void updateEmptyListMessage(boolean show){
+        App.runOnUiThread(getActivity(), () -> {
+            binding.emptyRecyclerMessage.setText((show) ? getString(R.string.agenda_empty_recycler_message) : null);
+            binding.emptyRecyclerImage.setImageDrawable((show) ? ContextCompat.getDrawable(getActivity(), R.drawable.calendar_multiple) : null);
+            binding.emptyRecyclerMessage.setVisibility((show) ? View.VISIBLE : View.GONE);
+            binding.emptyRecyclerImage.setVisibility((show) ? View.VISIBLE : View.GONE);
+            binding.recyclerView.setVisibility((show) ? View.GONE : View.VISIBLE);
+        });
     }
 
     public FastAdapter.OnClickListener<CardViewAppointment> getDefaultOnClickListener() {
@@ -125,6 +137,7 @@ public class AgendaFragment extends Fragment implements MainActivityFragment {
                 .setPositiveButton(android.R.string.yes, (dg, which) -> {
                     appointmentBox.remove(selectedAppointment);
                     adapter.remove(adapterPosition);
+                    onRefresh();
                 })
                 .setNegativeButton(android.R.string.no, null)
                 .show();

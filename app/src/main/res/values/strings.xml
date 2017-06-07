@@ -50,6 +50,8 @@
     <string name="error_invalid_date">Please set a valid date! It shouldn\'t be in the past!</string>
     <string name="appointment_dialog_subject_title">Link this appointment with a subject</string>
     <string name="error_empty_subject_list">You didn\'t create any subject yet!</string>
+    <string name="subject_empty_recycler_message">Seems like you didn\'t add a subject yet!\nJust press the + button below!</string>
+    <string name="agenda_empty_recycler_message">Apparently you\'re not that busy!\nAdd an appointment by pressing the + button below!</string>
     <string name="none">None</string>
     <string name="default_text">Default</string>
     <string name="subject_snackbar_average">

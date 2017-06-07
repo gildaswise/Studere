@@ -5,6 +5,7 @@
     <data>
         <import type="java.util.Locale"/>
         <import type="android.view.View"/>
+        <import type="com.gildaswise.notabook.core.Subject"/>
         <import type="com.gildaswise.notabook.utils.Constant"/>
         <variable
             name="subject"
@@ -85,7 +86,7 @@
                 android:textColor="@color/md_green_500"
                 android:textSize="32sp"
                 android:textStyle="bold"
-                android:visibility="@{subject.average == 0.0 ? View.GONE : View.VISIBLE}"
+                android:visibility="@{subject.average == Subject.DEFAULT_AVERAGE ? View.GONE : View.VISIBLE}"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />

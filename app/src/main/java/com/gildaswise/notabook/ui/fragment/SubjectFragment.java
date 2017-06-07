@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.PopupMenu;
@@ -51,7 +52,6 @@ public class SubjectFragment extends Fragment implements MainActivityFragment {
         binding.recyclerView.setAdapter(adapter);
         binding.recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         subjectBox = App.getStorage(getActivity()).boxFor(Subject.class);
-        onRefresh();
     }
 
     @Override
@@ -103,6 +103,7 @@ public class SubjectFragment extends Fragment implements MainActivityFragment {
                 .setPositiveButton(android.R.string.yes, (dg, which) -> {
                     subjectBox.remove(selectedSubject);
                     adapter.remove(adapterPosition);
+                    onRefresh();
                 })
                 .setNegativeButton(android.R.string.no, null)
                 .show();
@@ -112,6 +113,7 @@ public class SubjectFragment extends Fragment implements MainActivityFragment {
     public void onRefresh() {
         App.startNewThread(() -> {
             List<Subject> subjects = subjectBox.getAll();
+            updateEmptyListMessage(subjects.isEmpty());
             App.startNewThread(() -> {
                 for (Subject item : subjects) {
                     CardViewSubject newCardView = new CardViewSubject(item);
@@ -136,4 +138,15 @@ public class SubjectFragment extends Fragment implements MainActivityFragment {
         SubjectDialog dialog = SubjectDialog.newInstance(null, dlg -> onRefresh());
         dialog.show(getActivity().getSupportFragmentManager(), "dialog_subject");
     }
+
+    private void updateEmptyListMessage(boolean show){
+        App.runOnUiThread(getActivity(), () -> {
+            binding.emptyRecyclerMessage.setText((show) ? getString(R.string.subject_empty_recycler_message) : null);
+            binding.emptyRecyclerImage.setImageDrawable((show) ? ContextCompat.getDrawable(getActivity(), R.drawable.book_open_page_variant) : null);
+            binding.emptyRecyclerMessage.setVisibility((show) ? View.VISIBLE : View.GONE);
+            binding.emptyRecyclerImage.setVisibility((show) ? View.VISIBLE : View.GONE);
+            binding.recyclerView.setVisibility((show) ? View.GONE : View.VISIBLE);
+        });
+    }
+
 }

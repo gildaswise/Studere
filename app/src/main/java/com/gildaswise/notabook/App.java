@@ -58,6 +58,10 @@ public class App extends Application {
         }
     }
 
+    public static void runOnUiThread(Activity activity, Runnable runnable) {
+        if(activity != null) activity.runOnUiThread(runnable);
+    }
+
     public static Spanned getHtmlFormattedString(String string) {
         return (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) ? Html.fromHtml(string, Html.FROM_HTML_MODE_COMPACT) : Html.fromHtml(string);
     }
