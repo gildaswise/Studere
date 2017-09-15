@@ -211,7 +211,7 @@
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="16dp"
                 android:layout_marginBottom="16dp"
-                android:text="@{appointment.relatedSubject.name ?? @string/appointment_subject_empty}"
+                android:text="@{appointment.relatedSubject.target.name ?? @string/appointment_subject_empty}"
                 android:textColor="@color/md_black_1000"
                 android:textSize="18sp"
                 app:layout_constraintStart_toEndOf="@+id/image_book"

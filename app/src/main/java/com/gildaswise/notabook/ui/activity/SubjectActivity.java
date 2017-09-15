@@ -46,6 +46,7 @@ public class SubjectActivity extends AppCompatActivity {
     private FastItemAdapter<CardViewScore> adapter;
     private Subject selectedSubject;
     private Box<Score> scoreBox;
+    private Box<Subject> subjectBox;
     private Snackbar snackbar;
 
     @Override
@@ -54,7 +55,8 @@ public class SubjectActivity extends AppCompatActivity {
         binding = DataBindingUtil.setContentView(this, R.layout.activity_subject);
         adapter = new FastItemAdapter<>();
         scoreBox = App.getStorage(this).boxFor(Score.class);
-        selectedSubject = App.getStorage(this).boxFor(Subject.class).get(getIntent().getLongExtra("subject_id", 0));
+        subjectBox = App.getStorage(this).boxFor(Subject.class);
+        selectedSubject = subjectBox.get(getIntent().getLongExtra("subject_id", 0));
         setSupportActionBar(binding.toolbar);
         if(getSupportActionBar() != null) {
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -73,28 +75,33 @@ public class SubjectActivity extends AppCompatActivity {
 
     private void onRefresh() {
         if (selectedSubject != null) {
+
+            selectedSubject = subjectBox.get(selectedSubject.getId());
             List<Score> scoreList = selectedSubject.getScores();
             App.log("SubjectActivity - onRefresh", "Subject (" + selectedSubject.getName() + ") has " + scoreList.size() + " scores");
+
             boolean isEmpty = scoreList.isEmpty();
             boolean displayCardView = !isEmpty && scoreList.size() > 1;
+
             binding.cardviewInfo.setVisibility((displayCardView) ? View.VISIBLE : View.GONE);
             binding.emptyMessage.setVisibility((isEmpty) ? View.VISIBLE : View.GONE);
+
             if(!isEmpty) {
 
-                //Prepare CardView containing Subject's status
+                // Prepare CardView containing Subject's status
                 if(displayCardView) {
                     String status = SubjectUtils.getSubjectStatus(this, selectedSubject);
                     status += Constant.STRING_SPACE + String.format(getString(R.string.subject_status_average), selectedSubject.getAverage());
                     binding.textSubjectStatus.setText(App.getHtmlFormattedString(status));
                 }
 
-                //Fill adapter in another thread due to using forEach
+                // Fill adapter in another thread due to using forEach
                 App.startNewThread(() -> {
                     for (Score score : scoreList) {
                         CardViewScore newCardViewScore = new CardViewScore(score);
                         newCardViewScore.withIdentifier(score.getId());
                         ActivityUtils.runOnUiThread(this, () -> {
-                            int position = adapter.getItemAdapter().getAdapterPosition(score.getId());
+                            int position = adapter.getPosition(score.getId());
                             if (adapter.getAdapterItemCount() > 0 && position > -1 && adapter.getAdapterItem(position) != null) {
                                 adapter.set(position, newCardViewScore);
                                 return;
@@ -105,6 +112,7 @@ public class SubjectActivity extends AppCompatActivity {
                 });
 
             }
+
         } else {
             Toast.makeText(this, R.string.error_invalid_subject, Toast.LENGTH_SHORT).show();
             finish();

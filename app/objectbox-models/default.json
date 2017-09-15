@@ -32,7 +32,8 @@
           "id": "6:5615341037598149642",
           "name": "createdAt"
         }
-      ]
+      ],
+      "relations": []
     },
     {
       "id": "2:1884349504009279719",
@@ -64,7 +65,8 @@
           "id": "8:8148150378840517733",
           "name": "notificationType"
         }
-      ]
+      ],
+      "relations": []
     },
     {
       "id": "3:2572952051687610093",
@@ -79,7 +81,8 @@
           "id": "2:3064808935762155544",
           "name": "trigger"
         }
-      ]
+      ],
+      "relations": []
     },
     {
       "id": "4:8544924114898454841",
@@ -111,7 +114,8 @@
           "indexId": "3:4626240791980231443",
           "name": "notificationId"
         }
-      ]
+      ],
+      "relations": []
     },
     {
       "id": "5:6021109791689599932",
@@ -147,13 +151,16 @@
           "indexId": "1:5919851005156453579",
           "name": "subjectId"
         }
-      ]
+      ],
+      "relations": []
     }
   ],
   "lastEntityId": "5:6021109791689599932",
   "lastIndexId": "4:8704686184481335666",
+  "lastRelationId": "0:0",
   "lastSequenceId": "0:0",
-  "modelVersion": 2,
+  "modelVersion": 4,
+  "modelVersionParserMinimum": 4,
   "retiredEntityUids": [],
   "retiredIndexUids": [
     8704686184481335666
@@ -164,5 +171,6 @@
     3513430569076068485,
     3700294874020424897
   ],
+  "retiredRelationUids": [],
   "version": 1
 }

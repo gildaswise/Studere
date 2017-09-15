@@ -36,7 +36,7 @@
     },
     {
       "id": "2:1884349504009279719",
-      "lastPropertyId": "7:3700294874020424897",
+      "lastPropertyId": "8:8148150378840517733",
       "name": "Appointment",
       "properties": [
         {
@@ -61,9 +61,8 @@
           "name": "relatedSubjectId"
         },
         {
-          "id": "7:3700294874020424897",
-          "indexId": "4:8704686184481335666",
-          "name": "notificationTypeId"
+          "id": "8:8148150378840517733",
+          "name": "notificationType"
         }
       ]
     },
@@ -156,11 +155,14 @@
   "lastSequenceId": "0:0",
   "modelVersion": 2,
   "retiredEntityUids": [],
-  "retiredIndexUids": [],
+  "retiredIndexUids": [
+    8704686184481335666
+  ],
   "retiredPropertyUids": [
     6596390712516066970,
     5821748304765650739,
-    3513430569076068485
+    3513430569076068485,
+    3700294874020424897
   ],
   "version": 1
 }

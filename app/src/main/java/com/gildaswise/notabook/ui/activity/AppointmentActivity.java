@@ -147,12 +147,12 @@ public class AppointmentActivity extends AppCompatActivity implements DatePicker
                     .withFastItemAdapter(new FastItemAdapter<>());
             dialog.withOnClickListener((view, adapter, item, position) -> {
                        Subject selectedSubject = item.getSubject();
-                       appointment.setRelatedSubject(selectedSubject);
+                       appointment.getRelatedSubject().setTarget(selectedSubject);
                        dialog.dismiss();
                        return true;
                   })
                   .withNegativeButton(R.string.none, (dlg, which) -> {
-                      appointment.setRelatedSubject(null);
+                      appointment.getRelatedSubject().setTarget(null);
                   })
                   .setOnDismissListener(dlg -> {
                       binding.setAppointment(appointment);

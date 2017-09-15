@@ -27,9 +27,7 @@ android {
             storePassword project.property('signing.password')
         }
     }
-    dataBinding {
-        enabled = true
-    }
+    dataBinding { enabled = true }
     packagingOptions {
         exclude 'META-INF/LICENSE'
         exclude 'META-INF/NOTICE'

@@ -41,7 +41,7 @@ public class ScoreDialog extends DialogFragment {
         ScoreDialog fragment = new ScoreDialog();
         fragment.setOnDismissListener(onDismissListener);
         fragment.setScore(score);
-        fragment.setSubject(score.getSubject());
+        fragment.setSubject(score.getSubject().getTarget());
         return fragment;
     }
 
@@ -57,6 +57,7 @@ public class ScoreDialog extends DialogFragment {
                 .setCancelable(false)
                 .setPositiveButton(R.string.button_save, null)
                 .setNegativeButton(R.string.button_cancel, null)
+                .setOnDismissListener(onDismissListener)
                 .show();
         dialog.getButton(DialogInterface.BUTTON_POSITIVE).setOnClickListener(getDefaultButtonListener(dialog));
         return dialog;
